@@ -1,0 +1,28 @@
+vich_uploader:
+    db_driver: orm        # or mongodb or phpcr - default db driver
+    twig: true            # set to false to disable twig integration
+    form: true            # set to false to disable form integration
+    storage: file_system  # or gaufrette or flysystem
+    metadata:
+        auto_detection: true
+        cache: file
+        type: attribute   
+    mappings:
+        images:
+            uri_prefix: /images/
+            upload_destination: '%kernel.project_dir%/public/images/'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer:
+                service: Vich\UploaderBundle\Naming\HashNamer
+                options: { algorithm: 'sha256', length: 50 }
+        avatar:
+            uri_prefix: /avatar/
+            upload_destination: '%kernel.project_dir%/public/avatar/'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer:
+                service: Vich\UploaderBundle\Naming\HashNamer
+                options: { algorithm: 'sha256', length: 50 }

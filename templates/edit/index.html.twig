@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="ui grid middle aligned" style="margin:3em;">
+        <div class="row centered">
+            <div class="ui container segment placeholder">
+                <img class="ui Massive image centered"
+     src="/webimg/lspdHeader.webp"
+     alt="lspdimge">
+                <div class="ui large form">
+                    <h1 class="header">EMS Panel</h1>
+                    <h1>Edité votre profile</h1>
+                {% for message in app.flashes('notice') %}
+                <div class="flash-notice">
+                    <span class="ui success text">{{ message }}</span>
+                </div>
+                {% endfor %}
+
+                    {{ form_start(registrationForm) }}
+                        <div class="required field">
+                            {{ form_row(registrationForm.username) }}
+                        </div>
+                        <div class="required field">
+                        {{ form_row(registrationForm.plainPassword, {
+                            label: 'Password'
+                            }) }}
+                        </div>
+
+                        <div class="required field">
+                        {{ form_row(registrationForm.Num_telephone, {
+                            label: 'Téléphone'
+                            }) }}
+                        </div>
+
+                        <div class="required field">
+                        {{ form_row(registrationForm.imageFile, {
+                            label: 'Photo de profile
+                            '
+                            }) }}
+                        </div>
+                        <div class="required field">
+                            {{ form_row(registrationForm.agreeTerms) }}
+                        </div>
+                        <button type="submit" class="ui sumbit primary button">actualisé</button>
+                    {{ form_end(registrationForm) }}
+
+                </div>
+            </div>   
+        </div>
+    </div>
+{% endblock %}

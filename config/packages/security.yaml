@@ -1,17 +1,29 @@
 security:
+    access_decision_manager:
+        strategy: unanimous
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\Agent
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: app_user_provider
+            custom_authenticator: App\Security\AuthenticatorAppAuthenticator
+            user_checker: App\Security\UserChecker
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -22,8 +34,25 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+    access_denied_url: /login
+    role_hierarchy:
+        ROLE_OFFICIER1: ROLE_CADET
+        ROLE_OFFICIER2: ROLE_OFFICIER1
+        ROLE_OFFICIER3: ROLE_OFFICIER2
+        ROLE_DECTECTIVE: ROLE_OFFICIER3
+        ROLE_SERGENT: ROLE_DECTECTIVE
+        ROLE_SERGENT_CHEF: ROLE_SERGENT
+        ROLE_LIEUTENANT: ROLE_SERGENT_CHEF
+        ROLE_LIEUTENANT_CHEF: ROLE_LIEUTENANT
+        ROLE_CAPITAINE: ROLE_LIEUTENANT_CHEF
+        ROLE_COMMANDANT: ROLE_CAPITAINE
+        ROLE_PROCUREUR: ROLE_COMMANDANT
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
 
 when@test:
     security:
