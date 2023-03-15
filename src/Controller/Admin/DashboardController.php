@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 use App\Entity\Agent;
 use App\Entity\Citoyen;
 use App\Entity\Amende;
+use App\Entity\Armes;
 use App\Entity\PeinePrison;
 use App\Entity\Plainte;
 use App\Entity\Rapport;
@@ -62,6 +63,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Vehicule');
         yield MenuItem::linkToCrud('Vehicule', 'fa-solid fa-car', Vehicule::class);
         yield MenuItem::linkToCrud('Vol de Vehicule', 'fa-solid fa-car-burst', VolVehicule::class);
+
+        yield MenuItem::section('Armes');
+        yield MenuItem::linkToCrud('Arme', 'fa-solid fa-person-rifle', Armes::class);
 
         yield MenuItem::section('Sanction');
         yield MenuItem::linkToCrud('Amende', 'fa-solid fa-receipt', Amende::class);

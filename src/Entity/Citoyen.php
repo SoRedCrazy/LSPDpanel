@@ -73,6 +73,9 @@ class Citoyen
     #[ORM\OneToMany(mappedBy: 'citoyen', targetEntity: Vol::class)]
     private Collection $vols;
 
+    #[ORM\OneToMany(mappedBy: 'citoyen', targetEntity: Armes::class)]
+    private Collection $armes;
+
     public function __construct()
     {
         $this->amendes = new ArrayCollection();
@@ -81,6 +84,7 @@ class Citoyen
         $this->peinePrisons = new ArrayCollection();
         $this->plaintes = new ArrayCollection();
         $this->vols = new ArrayCollection();
+        $this->armes = new ArrayCollection();
     }
 
     
@@ -388,6 +392,36 @@ class Citoyen
             // set the owning side to null (unless already changed)
             if ($vol->getCitoyen() === $this) {
                 $vol->setCitoyen(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Armes>
+     */
+    public function getArmes(): Collection
+    {
+        return $this->armes;
+    }
+
+    public function addArme(Armes $arme): self
+    {
+        if (!$this->armes->contains($arme)) {
+            $this->armes->add($arme);
+            $arme->setCitoyen($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArme(Armes $arme): self
+    {
+        if ($this->armes->removeElement($arme)) {
+            // set the owning side to null (unless already changed)
+            if ($arme->getCitoyen() === $this) {
+                $arme->setCitoyen(null);
             }
         }
 

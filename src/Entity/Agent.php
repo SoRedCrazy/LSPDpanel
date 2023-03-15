@@ -58,12 +58,16 @@ class Agent implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $actif = null;
 
+    #[ORM\OneToMany(mappedBy: 'agent', targetEntity: Armes::class)]
+    private Collection $armes;
+
 
     public function __construct()
     {
         $this->amendes = new ArrayCollection();
         $this->actif=false;
         $this->matricule=0;
+        $this->armes = new ArrayCollection();
     }
 
     public function __toString()
@@ -240,6 +244,36 @@ class Agent implements UserInterface, PasswordAuthenticatedUserInterface
     public function setActif(bool $actif): self
     {
         $this->actif = $actif;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Armes>
+     */
+    public function getArmes(): Collection
+    {
+        return $this->armes;
+    }
+
+    public function addArme(Armes $arme): self
+    {
+        if (!$this->armes->contains($arme)) {
+            $this->armes->add($arme);
+            $arme->setAgent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArme(Armes $arme): self
+    {
+        if ($this->armes->removeElement($arme)) {
+            // set the owning side to null (unless already changed)
+            if ($arme->getAgent() === $this) {
+                $arme->setAgent(null);
+            }
+        }
 
         return $this;
     }
