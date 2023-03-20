@@ -55,29 +55,29 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::section('Users')->setPermission('ROLE_SERGENT');
-        yield MenuItem::linkToCrud('Agent', 'fa-solid fa-shield-halved', Agent::class)->setPermission('ROLE_CAPITAINE');
-        yield MenuItem::linkToCrud('Citoyen', 'fa-solid fa-user', Citoyen::class)->setPermission('ROLE_SERGENT');
+        yield MenuItem::linkToDashboard('Accueil', 'fa fa-home');
+        yield MenuItem::section('Citoyens')->setPermission('ROLE_SERGENT');
+        yield MenuItem::linkToCrud('Agents', 'fa-solid fa-shield-halved', Agent::class)->setPermission('ROLE_CAPITAINE');
+        yield MenuItem::linkToCrud('Citoyens', 'fa-solid fa-user', Citoyen::class)->setPermission('ROLE_SERGENT');
 
-        yield MenuItem::section('Vehicule');
-        yield MenuItem::linkToCrud('Vehicule', 'fa-solid fa-car', Vehicule::class);
-        yield MenuItem::linkToCrud('Vol de Vehicule', 'fa-solid fa-car-burst', VolVehicule::class);
+        yield MenuItem::section('Véhicules')->setPermission('ROLE_CADET');
+        yield MenuItem::linkToCrud('Véhicules', 'fa-solid fa-car', Vehicule::class)->setPermission('ROLE_CADET');
+        yield MenuItem::linkToCrud('Vols de Vehicule', 'fa-solid fa-car-burst', VolVehicule::class)->setPermission('ROLE_CADET');
 
-        yield MenuItem::section('Armes');
-        yield MenuItem::linkToCrud('Arme', 'fa-solid fa-person-rifle', Armes::class);
+        yield MenuItem::section('Armes')->setPermission('ROLE_CADET');
+        yield MenuItem::linkToCrud('Armes', 'fa-solid fa-person-rifle', Armes::class)->setPermission('ROLE_CADET');
 
-        yield MenuItem::section('Sanction');
-        yield MenuItem::linkToCrud('Amende', 'fa-solid fa-receipt', Amende::class);
-        yield MenuItem::linkToCrud('Peine de prison', 'fa-solid fa-link', PeinePrison::class);
+        yield MenuItem::section('Sanctions')->setPermission('ROLE_CADET');
+        yield MenuItem::linkToCrud('Amendes', 'fa-solid fa-receipt', Amende::class)->setPermission('ROLE_CADET');
+        yield MenuItem::linkToCrud('Peines de prison', 'fa-solid fa-link', PeinePrison::class)->setPermission('ROLE_CADET');
 
         yield MenuItem::section('recherche');
-        yield MenuItem::linkToCrud('Rapport', 'fa-solid fa-file-pen', Rapport::class);
-        yield MenuItem::linkToCrud('plainte', 'fa-solid fa-exclamation', Plainte::class);
-        yield MenuItem::linkToCrud('Vol', 'fa-solid fa-sack-dollar', Vol::class);
+        yield MenuItem::linkToCrud('Rapports', 'fa-solid fa-file-pen', Rapport::class)->setPermission('ROLE_CADET');
+        yield MenuItem::linkToCrud('Plaintes', 'fa-solid fa-exclamation', Plainte::class)->setPermission('ROLE_CADET');
+        yield MenuItem::linkToCrud('Vols', 'fa-solid fa-sack-dollar', Vol::class)->setPermission('ROLE_CADET');
 
-        yield MenuItem::section('plus');
-        yield MenuItem::linkToRoute('Edité', 'fa-solid fa-user-pen','app_edit');
-        yield MenuItem::linkToLogout('Logout', 'fa-solid fa-right-from-bracket');
+        yield MenuItem::section('plus')->setPermission('ROLE_CADET');
+        yield MenuItem::linkToRoute('Editer', 'fa-solid fa-user-pen','app_edit')->setPermission('ROLE_CADET');
+        yield MenuItem::linkToLogout('Déconnexion', 'fa-solid fa-right-from-bracket');
     }
 }

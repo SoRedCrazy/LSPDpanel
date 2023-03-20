@@ -32,7 +32,7 @@ class CitoyenCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('Username'),
+            TextField::new('Username', 'Prénom Nom'),
             DateField::new('dateNaissance'),
             IntegerField::new('Num_Telephone'),
             TextField::new('sexe'),
