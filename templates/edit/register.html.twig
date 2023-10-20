@@ -11,7 +11,7 @@
      alt="lspdimge">
                 <div class="ui large form">
                     <h1 class="header">EMS Panel</h1>
-                    <h1>Editer votre profile</h1>
+                    <h1>inscrire votre profile</h1>
                 {% for message in app.flashes('notice') %}
                 <div class="flash-notice">
                     <span class="ui success text">{{ message }}</span>
@@ -43,7 +43,7 @@
                         <div class="required field">
                             {{ form_row(registrationForm.agreeTerms) }}
                         </div>
-                        <button type="submit" class="ui sumbit primary button">actualisé</button>
+                        <button type="submit" class="ui sumbit primary button">S'inscrire</button>
                     {{ form_end(registrationForm) }}
 
                 </div>
