@@ -47,6 +47,7 @@ security:
         ROLE_CAPITAINE: ROLE_LIEUTENANT_CHEF
         ROLE_COMMANDANT: ROLE_CAPITAINE
         ROLE_PROCUREUR: ROLE_COMMANDANT
+        ROLE_STAFF: [ROLE_CAPITAINE, ROLE_COMMANDANT,ROLE_PROCUREUR]
 services:
     # default configuration for services in *this* file
     _defaults:
