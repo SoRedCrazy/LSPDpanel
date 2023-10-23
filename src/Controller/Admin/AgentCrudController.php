@@ -44,8 +44,9 @@ class AgentCrudController extends AbstractCrudController
             ImageField::new('imageName', 'Image')
             ->hideOnForm()
             ->setBasePath('/avatar')
-            ->setUploadDir('public/avatar'),
-            Field::new('imageFile')->setFormType(VichImageType::class)->onlyOnForms(),
+            ->setUploadDir('public/avatar')
+            ->setFormTypeOptions(['required' => true]),
+            Field::new('imageFile','Image')->setFormType(VichImageType::class)->onlyOnForms()->setFormTypeOptions(['required' => true]),
         ];
     }
 
