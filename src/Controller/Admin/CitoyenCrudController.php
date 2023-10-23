@@ -50,7 +50,7 @@ class CitoyenCrudController extends AbstractCrudController
             AssociationField::new('peinePrisons')->setCrudController(PeinePrisonCrudController::class)->hideOnForm(),
             AssociationField::new('plaintes')->setCrudController(PlainteCrudController::class)->hideOnForm(),
             AssociationField::new('vols')->setCrudController(VolCrudController::class)->hideOnForm(),
-            AssociationField::new('armes')->setCrudController(VolCrudController::class)->hideOnForm(),
+            AssociationField::new('armes')->setCrudController(ArmesCrudController::class)->hideOnForm(),
 
         ];
     }
