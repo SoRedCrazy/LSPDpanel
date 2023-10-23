@@ -29,8 +29,13 @@ class ArmesCrudController extends AbstractCrudController
             ChoiceField::new('type')->setChoices([
                 // $value => $badgeStyleName
                 'Armes lourds' => 'Armes lourds',
-                'pistolé leger' => 'pistolé leger',
-                'pistolé de combat' => 'pistolé de combat',
+                'pistolet leger' => 'pistolet leger',
+                'pistolet de combat' => 'pistolet de combat',
+                'Arme de poing' => 'Arme de poing',
+                'SMG' => 'SMG',
+                'Fusil d\'assaut' => 'Fusil d\'assaut',
+                'Arme de chasse' => 'Arme de chasse',
+                'Autres' => 'Autres'
             ]),
         ];
     }
