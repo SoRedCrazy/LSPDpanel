@@ -56,18 +56,18 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Accueil', 'fa fa-home');
-        yield MenuItem::section('Citoyens')->setPermission('ROLE_SERGENT');
+        yield MenuItem::section('Citoyens')->setPermission('ROLE_LIEUTENANT');
         yield MenuItem::linkToCrud('Agents', 'fa-solid fa-shield-halved', Agent::class)->setPermission('ROLE_CAPITAINE');
         yield MenuItem::linkToCrud('Citoyens', 'fa-solid fa-user', Citoyen::class)->setPermission('ROLE_SERGENT');
 
-        yield MenuItem::section('Véhicules')->setPermission('ROLE_CADET');
+        yield MenuItem::section('Véhicules')->setPermission('ROLE_ADJOINT');
         yield MenuItem::linkToCrud('Véhicules', 'fa-solid fa-car', Vehicule::class)->setPermission('ROLE_CADET');
         yield MenuItem::linkToCrud('Vols de Vehicule', 'fa-solid fa-car-burst', VolVehicule::class)->setPermission('ROLE_CADET');
 
-        yield MenuItem::section('Armes')->setPermission('ROLE_CADET');
+        yield MenuItem::section('Armes')->setPermission('ROLE_ADJOINT');
         yield MenuItem::linkToCrud('Armes', 'fa-solid fa-person-rifle', Armes::class)->setPermission('ROLE_CADET');
 
-        yield MenuItem::section('Sanctions')->setPermission('ROLE_CADET');
+        yield MenuItem::section('Sanctions')->setPermission('ROLE_ADJOINT');
         yield MenuItem::linkToCrud('Amendes', 'fa-solid fa-receipt', Amende::class)->setPermission('ROLE_CADET');
         yield MenuItem::linkToCrud('Peines de prison', 'fa-solid fa-link', PeinePrison::class)->setPermission('ROLE_CADET');
 
@@ -76,7 +76,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Plaintes', 'fa-solid fa-exclamation', Plainte::class)->setPermission('ROLE_CADET');
         yield MenuItem::linkToCrud('Vols', 'fa-solid fa-sack-dollar', Vol::class)->setPermission('ROLE_CADET');
 
-        yield MenuItem::section('plus')->setPermission('ROLE_CADET');
+        yield MenuItem::section('plus')->setPermission('ROLE_ADJOINT');
         yield MenuItem::linkToRoute('Editer', 'fa-solid fa-user-pen','app_edit')->setPermission('ROLE_CADET');
         yield MenuItem::linkToLogout('Déconnexion', 'fa-solid fa-right-from-bracket');
     }

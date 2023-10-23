@@ -36,7 +36,7 @@ class VolVehiculeCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-        ->setPermission(Action::DELETE, 'ROLE_SERGENT')
+        ->setPermission(Action::DELETE, 'ROLE_LIEUTENANT')
         ->remove(Crud::PAGE_INDEX, Action::DELETE)
         ->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
